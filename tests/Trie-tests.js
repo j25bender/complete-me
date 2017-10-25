@@ -20,11 +20,11 @@ describe('Trie test', () => {
   it('Should be able to take in a word', () => {
     trie.insert('pizza');
     expect(
-      trie.root.child
-      .p.child
-      .i.child
-      .z.child
-      .z.child
+      trie.root.children
+      .p.children
+      .i.children
+      .z.children
+      .z.children
       .a.letter).to.equal('a');
   })
 
@@ -34,21 +34,21 @@ describe('Trie test', () => {
     trie.insert('pickle');
 
     expect(
-      trie.root.child
-      .p.child
-      .i.child
-      .z.child
-      .z.child
+      trie.root.children
+      .p.children
+      .i.children
+      .z.children
+      .z.children
       .a.letter
     ).to.equal('a');
 
     expect(
-      trie.root.child
-      .p.child
-      .i.child
-      .c.child
-      .k.child
-      .l.child
+      trie.root.children
+      .p.children
+      .i.children
+      .c.children
+      .k.children
+      .l.children
       .e.letter
     ).to.equal('e');
   })
