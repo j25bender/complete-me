@@ -3,8 +3,8 @@ import Node from '../lib/Node.js';
 import Trie from '../lib/Trie.js';
 
 describe('First Node test', () => {
-  it('should be a function', () => {
-    expect(Node).to.be.a('function');
-  })
-  // it('should take a letter')
+  // it('should be a object', () => {
+  // 	let newNode = new Node();
+  //   expect(newNode).to.be.an('object');
+  // })
 })
