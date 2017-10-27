@@ -2,6 +2,7 @@ import fs from 'fs';
 import { expect } from 'chai';
 import { assert } from 'chai';
 import { Trie } from '../lib/Trie.js';
+import { Node } from '../lib/Node.js';
 import chai from 'chai';
 chai.should();
 
@@ -11,9 +12,11 @@ const dictionary = fs.readFileSync(text).toString().trim().split('\n');
 
 describe('Trie Tests', () => {
   let trie;
+  let node;
 
   beforeEach(() => {
     trie = new Trie();
+    node = new Node('');
   });
 
   it('Expect Trie to be a function', () => {
@@ -102,6 +105,25 @@ describe('Trie Tests', () => {
     it('Expect suggest to return an array', () => {
       expect(trie.suggest('')).to.deep.equal([]);
     });
+
+    it('Should suggest a word given a letter', () => {
+      trie.insert('pizza');
+      trie.insert('apple');
+      trie.insert('appeal');
+
+      expect(trie.suggest('piz')).to.deep.equal(['pizza']);
+    })
+
+    it('Words with higher popularity suggested before alphabetical order', () => {
+      trie.insert('beer');
+      trie.insert('burger');
+      trie.insert('bourbon');
+
+      trie.select('bourbon');
+      trie.select('beer');
+      trie.select('bourbon');
+      expect(trie.suggest('b')).to.deep.equal(['bourbon','beer', 'burger']);
+    })
   })
 
   describe('findSuggestions Tests', () => {
@@ -119,8 +141,8 @@ describe('Trie Tests', () => {
 
     it('Expect Trie to populate dictionary of 235,886 words', () => {
       trie.populate(dictionary);
-    expect(dictionary.length).to.equal(235886);
-  })
+      expect(dictionary.length).to.equal(235886);
+    })
 
   })
 
