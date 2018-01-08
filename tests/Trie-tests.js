@@ -146,6 +146,22 @@ describe('Trie Tests', () => {
 
   })
 
+  describe('Delete Tests', () => {
+    
+    it('Should be an method', () => {
+      expect(trie.delete).to.be.a('function');
+    })
+
+    it('Should delete a word', () => {
+      trie.insert('jinx');
+      trie.insert('lynx');
+      
+      trie.should.have.property('wordCount').equal(2);
+      trie.delete('jinx');
+      trie.should.have.property('wordCount').equal(1);
+    })
+  })
+
   describe('Sad Path Tests', () => {
     it('Should NOT overwrite word if inserted twice', () => {
       trie.insert('recursion');
